@@ -61,4 +61,47 @@ document.addEventListener('DOMContentLoaded', () => {
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
+    // 5. Image Modal (Lightbox)
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    const closeBtn = document.querySelector('.modal-close');
+    const galleryImages = document.querySelectorAll('.gallery-img-card img');
+
+    if (modal && modalImg && closeBtn) {
+        // Open modal on image click
+        galleryImages.forEach(img => {
+            img.addEventListener('click', function() {
+                modal.classList.add('show');
+                modalImg.src = this.src;
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+        });
+
+        // Close modal functions
+        const closeModal = () => {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            // Small delay to clear src after fade out animation
+            setTimeout(() => {
+                if(!modal.classList.contains('show')) modalImg.src = '';
+            }, 300);
+        };
+
+        // Close on X click
+        closeBtn.addEventListener('click', closeModal);
+
+        // Close on background click
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('show')) {
+                closeModal();
+            }
+        });
+    }
 });

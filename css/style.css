@@ -16,6 +16,7 @@
   --text-main: #f1f5f9;
   --text-muted: #94a3b8;
   --text-light: #ffffff;
+  --text-dark: #1e293b; /* Added for light background blocks */
   
   --border-color: rgba(192, 197, 206, 0.2);
   
@@ -975,6 +976,169 @@ img {
   font-size: 0.9rem;
   color: rgba(255,255,255,0.6);
 }
+
+/* Blended Image Utility */
+.blend-img-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+}
+.image-blend {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 85%);
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 85%);
+  opacity: 0.85;
+}
+
+/* Achievement Grid */
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.achievement-card {
+  background: var(--bg-white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.number-highlight {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.achievement-text {
+  font-size: 1rem;
+  color: var(--text-light); /* Changed to white for readability on dark background */
+  line-height: 1.6;
+}
+
+/* Special Pricing Block */
+.pricing-special-block {
+  background: #fdfbf7; /* Off-white / light beige */
+  padding: 3rem;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.05);
+  margin-bottom: 3rem;
+}
+
+.pricing-special-block h2.section-title {
+  color: #1e293b !important; /* Dark Navy/Gray for readability */
+}
+
+.special-badge {
+  display: inline-block;
+  background-color: var(--accent);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  margin-right: 0.5rem;
+}
+
+.pricing-special-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+/* Gallery inside Profile */
+.profile-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.gallery-img-card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.gallery-img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-img-card img:hover {
+  transform: scale(1.05);
+}
+
+/* Image Modal */
+.image-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-modal.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+}
+
+.image-modal .modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+  animation-name: zoom;
+  animation-duration: 0.3s;
+}
+
+@keyframes zoom {
+  from {transform: scale(0.9)} 
+  to {transform: scale(1)}
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: #bbb;
+  text-decoration: none;
+}
+
 
 /* Responsive */
 @media (max-width: 992px) {
